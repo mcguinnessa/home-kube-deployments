@@ -35,4 +35,4 @@ spec:
       volumes:
       - name: "mongo-data-dir"
         persistentVolumeClaim:
-          claimName: "pv-claim"
+          claimName: "mongo-pvc"
