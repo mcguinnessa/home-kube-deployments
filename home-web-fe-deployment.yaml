@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-web-fe-deployment
+  labels:
+    app: home-web-fe
+spec:
+  selector:
+    matchLabels:
+      app: home-web-fe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: home-web-fe
+    spec:
+      containers:
+      - name: home-web-fe
+        image: mcguinnessa/home-web-fe:latest
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        ports:
+        - containerPort: 3000

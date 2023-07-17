@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+  labels:
+    app: home-mongodb
+spec:
+  selector:
+    matchLabels:
+      app: home-mongodb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: home-mongodb
+    spec:
+      containers:
+      - name: home-mongodb
+        image: mongo:4.4.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: film_mgr
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: paramount
+        - name: MONGO_INITDB_DATABASE
+          value: "Films"
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        volumeMounts:
+        - name: "mongo-data-dir"
+          mountPath: "/data/db"
+        ports:
+        - containerPort: 27017
+      volumes:
+      - name: "mongo-data-dir"
+        persistentVolumeClaim:
+          claimName: "pv-claim"
