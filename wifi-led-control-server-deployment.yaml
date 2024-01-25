@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wifi-led-control-server-deployment
+  labels:
+    app: wifi-led-control-server
+spec:
+  selector:
+    matchLabels:
+      app: wifi-led-control-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wifi-led-control-server
+    spec:
+      containers:
+      - name: wifi-led-control-server
+        image: mcguinnessa/wifi-led-control-server:latest
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        ports:
+        - containerPort: 4000
