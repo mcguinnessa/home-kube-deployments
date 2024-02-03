@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: helloworld-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: host.local
+    http:
+      paths:
+        - path: /hello
+          pathType: Prefix
+          backend:
+            service:
+              name: helloworld
+              port:
+                number: 80
+        - path: /led(/|$)(.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: wifi-led-control-server-service
+              port:
+                number: 4000

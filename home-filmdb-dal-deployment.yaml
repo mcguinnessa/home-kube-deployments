@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-filmdb-dal-deployment
+  labels:
+    app: home-filmdb-dal
+spec:
+  selector:
+    matchLabels:
+      app: home-filmdb-dal
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: home-filmdb-dal
+    spec:
+      containers:
+      - name: home-filmdb-dal
+        image: mcguinnessa/home-filmdb-dal:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MONGODB_USER
+          value: film_mgr
+        - name: MONGODB_PASSWORD
+          value: paramount
+        - name: MONGODB_URI
+          value: "192.168.0.116:30164"
+        - name: MONGODB_DOC
+          value: "FilmDatabase"
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        ports:
+        - containerPort: 3000

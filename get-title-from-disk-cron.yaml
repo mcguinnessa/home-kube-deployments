@@ -5,8 +5,8 @@ metadata:
   labels:
     app: gtfd
 spec:
-  #schedule: "01 1 * * *"
-  schedule: "*/10 * * * *"
+  schedule: "01 1 * * *"
+  #schedule: "*/10 * * * *"
   jobTemplate:
     spec:
       template:
