@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: helloworld-ingress
+  name: ingress-instance
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
