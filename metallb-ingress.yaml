@@ -16,6 +16,13 @@ spec:
               name: helloworld
               port:
                 number: 80
+        - path: /home
+          pathType: Prefix
+          backend:
+            service:
+              name: web-front-page-service
+              port:
+                number: 3500
         - path: /led(/|$)(.*)
           pathType: Prefix
           backend:
