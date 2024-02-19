@@ -17,6 +17,7 @@ spec:
       containers:
       - name: wifi-led-control-server
         image: mcguinnessa/wifi-led-control-server:latest
+        imagePullPolicy: "Always"
 # Use the localhost:32000 path to use image from registry service
 # e.g.  image: localhost:32000/hello-app:v3
         ports:
