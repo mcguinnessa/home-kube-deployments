@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-front-page-deployment
+  labels:
+    app: web-front-page
+spec:
+  selector:
+    matchLabels:
+      app: web-front-page
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: web-front-page
+    spec:
+      containers:
+      - name: web-front-page
+        image: mcguinnessa/web-front-page:latest
+        imagePullPolicy: "Always"
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        ports:
+        - containerPort: 3500
