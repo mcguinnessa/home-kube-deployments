@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: film-web-fe-deployment
+  labels:
+    app: film-web-fe
+spec:
+  selector:
+    matchLabels:
+      app: film-web-fe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: film-web-fe
+    spec:
+      containers:
+      - name: film-web-fe
+        image: mcguinnessa/film-web-fe:latest
+        imagePullPolicy: "Always"
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        ports:
+        - containerPort: 3000

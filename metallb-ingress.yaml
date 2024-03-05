@@ -16,7 +16,7 @@ spec:
               name: helloworld
               port:
                 number: 80
-        - path: /home
+        - path: /home(/|$)(.*)
           pathType: Prefix
           backend:
             service:
@@ -30,3 +30,10 @@ spec:
               name: wifi-led-control-server-service
               port:
                 number: 4000
+        - path: /()(api.*)
+          pathType: Prefix
+          backend:
+            service:
+              name: film-web-be-service
+              port:
+                number: 8080

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: film-web-be-deployment
+  labels:
+    app: film-web-be
+spec:
+  selector:
+    matchLabels:
+      app: film-web-be
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: film-web-be
+    spec:
+      containers:
+      - name: film-web-be
+        image: mcguinnessa/film-web-be:latest
+        imagePullPolicy: "Always"
+        env:
+        - name: FILM_DB_USER
+          value: film_mgr
+        - name: FILM_DB_PASSWORD
+          value: paramount
+#        - name: FILM_DB_HOST
+#          value: "192.168.0.116"
+        - name: FILM_DB_HOST
+          value: "${MONGO_SERVICE_SERVICE_HOST}"
+#        - name: FILM_DB_PORT
+#          value: "30164"
+        - name: FILM_DB_PORT
+          value: "${MONGO_SERVICE_SERVICE_PORT}"
+# Use the localhost:32000 path to use image from registry service
+# e.g.  image: localhost:32000/hello-app:v3
+        ports:
+        - containerPort: 3000
