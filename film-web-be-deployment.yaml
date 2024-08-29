@@ -25,12 +25,12 @@ spec:
           value: paramount
 #        - name: FILM_DB_HOST
 #          value: "192.168.0.116"
-        - name: FILM_DB_HOST
-          value: "${MONGO_SERVICE_SERVICE_HOST}"
+#        - name: FILM_DB_HOST
+#          value: "${MONGO_SERVICE_SERVICE_HOST}"
 #        - name: FILM_DB_PORT
 #          value: "30164"
-        - name: FILM_DB_PORT
-          value: "${MONGO_SERVICE_SERVICE_PORT}"
+#        - name: FILM_DB_PORT
+#          value: "${MONGO_SERVICE_SERVICE_PORT}"
 # Use the localhost:32000 path to use image from registry service
 # e.g.  image: localhost:32000/hello-app:v3
         ports:
